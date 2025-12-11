@@ -22,7 +22,9 @@ jobs:
           git config --global user.email "${{ vars.MIRROR_USER_EMAIL }}"
 
       - name: Push to mirror repository
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_PAT }}
         run: |
-          git remote add mirror https://${{ vars.MIRROR_USER_NAME }}:${{ secrets.MIRROR_PAT }}@github.com/${{ vars.MIRROR_REPO }}.git
+          git remote add mirror https://${{ secrets.MIRROR_PAT }}@github.com/${{ vars.MIRROR_REPO }}.git
           git push mirror --all --force
           git push mirror --tags --force
