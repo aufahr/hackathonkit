@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useAction } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import type { Id } from "@/convex/_generated/dataModel";
-import { useScribe } from "./use-scribe";
+import { useScribe, CommitStrategy } from "./use-scribe";
 
 export type DungeonVoiceStatus =
   | "idle"
@@ -90,7 +90,7 @@ export function useDungeonVoice({
       }
     },
     // VAD settings for better detection - auto commit after silence
-    commitStrategy: "vad",
+    commitStrategy: CommitStrategy.VAD,
     vadSilenceThresholdSecs: 1.5, // Commit after 1.5s of silence
     minSpeechDurationMs: 500, // Minimum 500ms of speech
   });
