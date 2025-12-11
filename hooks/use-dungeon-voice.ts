@@ -89,8 +89,8 @@ export function useDungeonVoice({
         setStatus("idle");
       }
     },
-    // VAD settings for better detection
-    commitStrategy: "silence",
+    // VAD settings for better detection - auto commit after silence
+    commitStrategy: "vad",
     vadSilenceThresholdSecs: 1.5, // Commit after 1.5s of silence
     minSpeechDurationMs: 500, // Minimum 500ms of speech
   });
