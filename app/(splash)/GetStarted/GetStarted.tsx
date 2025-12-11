@@ -18,8 +18,19 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { getDefaultApp } from "@/config/apps";
 
 export const GetStarted = () => {
+  const defaultApp = getDefaultApp();
+  const landing = defaultApp.landing;
+
+  // Fallback values if no landing config
+  const headline = landing?.headline || "Build faster.";
+  const subheadline = landing?.subheadline || "Ship sooner.";
+  const tagline = landing?.tagline || "A complete starter kit for your next hackathon.";
+  const features = landing?.features || [];
+  const techStack = landing?.techStack || ["Next.js", "Convex", "ElevenLabs", "Tailwind", "shadcn/ui"];
+
   return (
     <div className="flex grow flex-col">
       {/* Hero Section - mymind inspired: clean, lots of whitespace */}
@@ -42,13 +53,12 @@ export const GetStarted = () => {
 
           {/* Big bold headline - mymind style */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[0.95]">
-            <span className="block">Build faster.</span>
-            <span className="block text-muted-foreground/60">Ship sooner.</span>
+            <span className="block">{headline}</span>
+            <span className="block text-muted-foreground/60">{subheadline}</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-            A complete starter kit for your next hackathon. 
-            Voice AI, real-time chat, authentication — all pre-configured.
+            {tagline}
           </p>
 
           {/* Clean CTA buttons */}
@@ -69,7 +79,7 @@ export const GetStarted = () => {
 
           {/* Simple tech stack pills */}
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {["Next.js", "Convex", "ElevenLabs", "Tailwind", "shadcn/ui"].map((tech) => (
+            {techStack.map((tech) => (
               <span 
                 key={tech}
                 className="px-4 py-2 text-sm font-medium text-muted-foreground bg-secondary/60 rounded-full"
@@ -94,42 +104,18 @@ export const GetStarted = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <FeatureCard
-              icon={<Volume2 />}
-              title="Text to Speech"
-              description="Convert text to natural speech with 30+ voices in 29 languages."
-              color="bg-amber-100 text-amber-600"
-            />
-            <FeatureCard
-              icon={<Mic />}
-              title="Voice Agents"
-              description="Build conversational AI agents with real-time voice interaction."
-              color="bg-rose-100 text-rose-600"
-            />
-            <FeatureCard
-              icon={<MessageSquare />}
-              title="Real-time Chat"
-              description="Live messaging powered by Convex. Instant sync across all clients."
-              color="bg-blue-100 text-blue-600"
-            />
-            <FeatureCard
-              icon={<Zap />}
-              title="Authentication"
-              description="GitHub OAuth and magic links. Secure and ready to use."
-              color="bg-purple-100 text-purple-600"
-            />
-            <FeatureCard
-              icon={<Layers />}
-              title="Beautiful UI"
-              description="Polished components from shadcn/ui. Dark mode included."
-              color="bg-green-100 text-green-600"
-            />
-            <FeatureCard
-              icon={<Globe />}
-              title="Deploy Anywhere"
-              description="Optimized for Vercel. One-click deployment ready."
-              color="bg-orange-100 text-orange-600"
-            />
+            {features.map((feature) => {
+              const FeatureIcon = feature.icon;
+              return (
+                <FeatureCard
+                  key={feature.title}
+                  icon={<FeatureIcon />}
+                  title={feature.title}
+                  description={feature.description}
+                  color={feature.color}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
