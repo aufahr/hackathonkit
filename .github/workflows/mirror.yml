@@ -25,6 +25,6 @@ jobs:
         env:
           MIRROR_TOKEN: ${{ secrets.MIRROR_PAT }}
         run: |
-          git remote add mirror https://${{ secrets.MIRROR_PAT }}@github.com/${{ vars.MIRROR_REPO }}.git
+          git remote add mirror https://x-access-token:${{ secrets.MIRROR_PAT }}@github.com/${{ vars.MIRROR_REPO }}.git
           git push mirror --all --force
           git push mirror --tags --force
