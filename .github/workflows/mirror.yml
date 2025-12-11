@@ -18,11 +18,11 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "${{ secrets.MIRROR_USER_NAME }}"
-          git config --global user.email "${{ secrets.MIRROR_USER_EMAIL }}"
+          git config --global user.name "${{ vars.MIRROR_USER_NAME }}"
+          git config --global user.email "${{ vars.MIRROR_USER_EMAIL }}"
 
       - name: Push to mirror repository
         run: |
-          git remote add mirror https://${{ secrets.MIRROR_USER_NAME }}:${{ secrets.MIRROR_PAT }}@github.com/${{ secrets.MIRROR_REPO }}.git
+          git remote add mirror https://${{ vars.MIRROR_USER_NAME }}:${{ secrets.MIRROR_PAT }}@github.com/${{ vars.MIRROR_REPO }}.git
           git push mirror --all --force
           git push mirror --tags --force
