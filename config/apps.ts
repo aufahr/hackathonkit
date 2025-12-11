@@ -1,0 +1,33 @@
+export interface AppConfig {
+  slug: string;
+  name: string;
+  description: string;
+  icon?: string;
+}
+
+// Define your apps here - add new apps as you build them
+export const apps: AppConfig[] = [
+  {
+    slug: "demo",
+    name: "Demo App",
+    description: "Default starter template",
+  },
+  {
+    slug: "voice-assistant",
+    name: "Voice Assistant",
+    description: "AI voice assistant demo",
+  },
+];
+
+// Set the default app slug - users will be redirected here from /app
+export const defaultAppSlug = "demo";
+
+// Helper to get app by slug
+export function getAppBySlug(slug: string): AppConfig | undefined {
+  return apps.find((app) => app.slug === slug);
+}
+
+// Helper to get default app
+export function getDefaultApp(): AppConfig {
+  return apps.find((app) => app.slug === defaultAppSlug) || apps[0];
+}
