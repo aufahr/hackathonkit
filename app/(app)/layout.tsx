@@ -25,7 +25,6 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
             <div className="w-7 h-7 rounded-lg bg-foreground flex items-center justify-center">
               <Box className="w-3.5 h-3.5 text-background" />
             </div>
-            <span className="font-semibold text-sm hidden sm:inline">Hackathon Kit</span>
           </Link>
           
           {/* Right Actions */}

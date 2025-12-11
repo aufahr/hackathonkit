@@ -14,7 +14,7 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { Volume2, MessageSquare, Home, BookOpen, Sparkles, ExternalLink, Box, Rocket, Layers } from "lucide-react";
+import { Volume2, MessageSquare, Home, BookOpen, Sparkles, ExternalLink, Box, Rocket } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { apps } from "@/config/apps";
@@ -130,6 +130,7 @@ export function AppSidebar() {
               {apps.map((app) => {
                 const appUrl = `/app/${app.slug}`;
                 const isActive = pathname === appUrl || pathname.startsWith(`/app/${app.slug}/`);
+                const AppIcon = app.icon;
                 return (
                   <SidebarMenuItem key={app.slug}>
                     <SidebarMenuButton 
@@ -152,7 +153,7 @@ export function AppSidebar() {
                             : "bg-muted/50 text-muted-foreground group-hover/item:bg-primary/10 group-hover/item:text-primary"
                           }
                         `}>
-                          <Layers className="h-4 w-4" />
+                          <AppIcon className="h-4 w-4" />
                         </div>
                         <span>{app.name}</span>
                       </Link>

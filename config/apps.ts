@@ -1,8 +1,11 @@
+import { Layers, Mic, Box, Sparkles, Zap, Globe, MessageSquare, Volume2 } from "lucide-react";
+import { LucideIcon } from "lucide-react";
+
 export interface AppConfig {
   slug: string;
   name: string;
   description: string;
-  icon?: string;
+  icon: LucideIcon;
 }
 
 // Define your apps here - add new apps as you build them
@@ -11,11 +14,13 @@ export const apps: AppConfig[] = [
     slug: "demo",
     name: "Demo App",
     description: "Default starter template",
+    icon: Layers,
   },
   {
     slug: "voice-assistant",
     name: "Voice Assistant",
     description: "AI voice assistant demo",
+    icon: Mic,
   },
 ];
 

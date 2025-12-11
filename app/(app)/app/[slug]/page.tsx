@@ -1,8 +1,7 @@
 "use client";
 
-import { Box, Layers } from "lucide-react";
 import { useParams } from "next/navigation";
-import { getAppBySlug, apps } from "@/config/apps";
+import { getAppBySlug } from "@/config/apps";
 import { notFound } from "next/navigation";
 
 export default function AppPage() {
@@ -14,13 +13,15 @@ export default function AppPage() {
     notFound();
   }
 
+  const AppIcon = app.icon;
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-6">
       {/* Empty State - Clean Canvas */}
       <div className="max-w-md mx-auto text-center space-y-6">
         {/* Icon */}
         <div className="mx-auto w-16 h-16 rounded-2xl bg-muted/50 border-2 border-dashed border-border flex items-center justify-center">
-          <Layers className="h-7 w-7 text-muted-foreground/50" />
+          <AppIcon className="h-7 w-7 text-muted-foreground/50" />
         </div>
         
         {/* Text */}
