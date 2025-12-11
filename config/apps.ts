@@ -12,7 +12,7 @@ export interface AppConfig {
 export const apps: AppConfig[] = [
   {
     slug: "demo",
-    name: "Demo App",
+    name: "Demo App 1",
     description: "Default starter template",
     icon: Layers,
   },
